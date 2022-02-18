@@ -11,6 +11,7 @@ VIDEOSEG equ 0b800h
 
 .getch		macro
 			nop
+
 			mov ah, 00h
 			int 16h
 			nop
@@ -23,17 +24,17 @@ start:		mov ax, VIDEOSEG
 
 			mov di, 82h
 			mov bh, [di]
-			sub bx, 30h
+			sub bh, 30h
 
 			;mov ah, 02h
 			;mov dl, bh
 			;int 21h
 
-			mov ax, bx
-			cmp ax, 1
+			mov ah, bh
+			cmp ah, 1
 			je one
 			
-			cmp	ax, 2
+			cmp	ah, 2
 			je two
 
 			jmp close_proj
@@ -56,7 +57,7 @@ close_proj:
 
 ;--------------------------------------------------
 ;
-;es = 0b800h
+;es = 0b800h (viedo segment)
 ;bx = beginning of tablet(left high corner)
 ;dx = str which contains sembols for tablet
 ;
@@ -107,4 +108,3 @@ second_symb 	db 0c9h, 0bbh, 0c8h, 0bch, 0cdh, 0bah
 
 			
 end start
-																																																																																																			end start
